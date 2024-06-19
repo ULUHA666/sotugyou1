@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新規登録</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+</head>
+<body>
+    <div class="container">
+        <img src="img/toroku.png" alt="ログイン画像" class="login-image">
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email">
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password">
+        </div>
+        <div class="form-group">
+            <label for="name">名前:</label>
+            <input type="text" id="name">
+        </div>
+        <div class="form-group">
+            <label for="address">住所:</label>
+            <input type="text" id="address">
+        </div>
+        <div class="form-group">
+            <label for="profilePicture">身分証:</label>
+            <input type="file" id="profilePicture" accept="image/*">
+        </div>
+        <div class="button-container">
+            <button onclick="update()">修正</button>
+            <button onclick="signup()">登録</button>
+        </div>
+        <div id="message"></div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
