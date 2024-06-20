@@ -1,47 +1,27 @@
-// Firebase SDKの設定情報を貼り付ける
-const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
-};
-
 // Firebaseの初期化
 firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
+// const auth = firebase.auth();
+const db = firebase.firestore();
 
-// ログイン関数
-function login() {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+// ユーザー情報を表示する関数
+function displayUserInfo() {
+    const userInfoDiv = document.getElementById('user-info');
 
-    auth.signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            document.getElementById('message').innerText = 'Logged in successfully!';
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            document.getElementById('message').innerText = `Error: ${errorMessage}`;
+    // Firestoreからユーザーの情報を取得して表示する
+    db.collection("users").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            // ドキュメントデータを取得
+            const data = doc.data();
+
+            // 取得したデータをHTMLに追加
+            userInfoDiv.innerHTML += `
+                <p><strong>氏名:</strong> ${data.name}</p>
+                <p><strong>住所:</strong> ${data.address}</p>
+                <p><strong>身分証:</strong> <img src="${data.profilePicture}" alt="身分証"></p>
+                <hr>
+            `;
         });
-}
-
-// サインアップ関数
-function signup() {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-
-    auth.createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            document.getElementById('message').innerText = 'User created successfully!';
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            document.getElementById('message').innerText = `Error: ${errorMessage}`;
-        });
+    }).catch((error) => {
+        console.error("ドキュメントの取得エラー: ", error);
+    });
 }

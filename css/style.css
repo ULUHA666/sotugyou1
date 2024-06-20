@@ -15,6 +15,8 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 300px;
   text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .login-image {
@@ -51,8 +53,6 @@ body {
 .button-container button {
   width: 100%;
   padding: 10px;
-  background-color: #007bff;
-  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -60,12 +60,59 @@ body {
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.button-container button:hover {
-  background-color: pink;
+/* 修正ボタンのスタイル */
+.edit-button {
+  background-color: #4CAF50; /* 緑色 */
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+/* ログアウトボタンのスタイル */
+.logout-button {
+  background-color: #f44336; /* 赤色 */
+  color: white;
+}
+
+.logout-button:hover {
+  background-color: #e53935;
+  transform: translateY(-2px);
+}
+
+/* Loginボタンのスタイル */
+.login-button {
+  background-color: #007bff; /* 青色 */
+  color: white;
+}
+
+.login-button:hover {
+  background-color: palevioletred; /* ホバー時の色 */
+  transform: translateY(-2px);
+}
+
+/* 新規登録ボタンのスタイル */
+.signup-button {
+  background-color: #007bff; /* 青色 */
+  color: white;
+}
+
+.signup-button:hover {
+  background-color: palevioletred; /* ホバー時の色 */
   transform: translateY(-2px);
 }
 
 #message {
   margin-top: 15px;
   color: red;
+}
+
+#user-info {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: left;
 }
